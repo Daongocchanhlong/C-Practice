@@ -12,16 +12,7 @@ int checkwin(char tempsquare[3][3],int tempcount)
 	//check row
 	for (int i = 0; i < 3; i++)
 	{
-		if (tempsquare[i][0] == tempsquare[i][1] && tempsquare[i][1] == tempsquare[i][2])
-			if (tempsquare[0][0] == 'X')
-				return 1;
-			else
-				return 2;
-	}
-	//check column
-	for (int i = 0; i < 3; i++)
-	{
-		if (tempsquare[0][i] == tempsquare[1][i] && tempsquare[1][i] == tempsquare[2][i])
+		if ((tempsquare[i][0] == tempsquare[i][1] && tempsquare[i][1] == tempsquare[i][2]) || (tempsquare[0][i] == tempsquare[1][i] && tempsquare[1][i] == tempsquare[2][i]))
 			if (tempsquare[0][0] == 'X')
 				return 1;
 			else
@@ -62,6 +53,24 @@ bool checkWronginput(int i, int j)
 	}
 }
 
+int printwiner(int count) 
+{
+	if (checkwin(square, count) == 1)
+	{
+		cout << "plyer " << player1 << " Win " << endl;
+		return 1;
+	}
+	else if (checkwin(square, count) == 2)
+	{
+		cout << "plyer " << player2 << " Win " << endl;
+		return 1;
+	}
+	else if (checkwin(square, count) == 0)
+	{
+		cout << "draw " << endl;
+		return 1;
+	}
+}
  void main()
 {
 	cout << "welcom to tictactoe game! play with your way!"<<endl;
@@ -96,22 +105,8 @@ bool checkWronginput(int i, int j)
 					
 				}
 			} while (true);
-
-			if (checkwin(square, count) == 1)
-			{
-				cout << "plyer " << player1 << " Win " << endl;
-				break;
-			}
-			else if (checkwin(square, count) == 2)
-			{
-				cout << "plyer " << player2 << " Win " << endl;
-				break;
-			}
-			else if (checkwin(square, count) == 0)
-			{
-				cout << "draw " << endl;
-				break;
-			}
+			
+			if (printwiner(count)==1) break;
 			
 			printboard(square);
 			do
@@ -131,23 +126,7 @@ bool checkWronginput(int i, int j)
 			
 
 			printboard(square);
-
-			if (checkwin(square, count) == 1)
-			{
-				cout << "plyer " << player1 << " Win "<<endl;
-				break;
-			}
-			else if (checkwin(square, count) == 2)
-			{
-				cout << "plyer " << player2 << " Win " << endl;
-				break;
-			}
-			else if (checkwin(square, count) == 0)
-			{
-				cout << "draw " << endl;
-				break;
-			}
-			
+			if (printwiner(count) == 1) break;
 			count++;
 			system("CLS");
 		}
