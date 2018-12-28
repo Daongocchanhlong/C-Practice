@@ -3,94 +3,53 @@
 #include <stdio.h>
 
 using namespace std;
-char a[3][3] = { '1','2','3','4','5','6','7','8','9' };
-char pl1[20], pl2[20];
+char square[3][3] = { '1','2','3','4','5','6','7','8','9' };
+char player1[20], player2[20];
 int mode;
 
-char checkwin(char a[3][3])
+int checkwin(char tempsquare[3][3],int tempcount)
 {
-	char line[3];
-	for (int i = 1; i <= 8; i++)
+	//check row
+	for (int i = 0; i < 3; i++)
 	{
-		switch (i)
-		{
-		case 1:
-
-			line[0] = a[0][0];
-			line[1] = a[0][1];
-			line[2] = a[0][2];
-			break;
-		case 2:
-
-			line[0] = a[1][0];
-			line[1] = a[1][1];
-			line[2] = a[1][2];
-			break;
-		case 3:
-
-			line[0] = a[2][0];
-			line[1] = a[2][1];
-			line[2] = a[2][2];
-			break;
-		case 4:
-
-			line[0] = a[0][0];
-			line[1] = a[1][0];
-			line[2] = a[2][0];
-			break;
-		case 5:
-
-			line[0] = a[0][1];
-			line[1] = a[1][1];
-			line[2] = a[2][1];
-			break;
-		case 6:
-
-			line[0] = a[0][2];
-			line[1] = a[1][2];
-			line[2] = a[2][2];
-			break;
-		case 7:
-
-			line[0] = a[0][0];
-			line[1] = a[1][1];
-			line[2] = a[2][2];
-			break;
-		case 8:
-
-			line[0] = a[0][2];
-			line[1] = a[1][1];
-			line[2] = a[2][0];
-			break;
-
-		}
-
-		if (line[0] == 'X'&& line[1] == 'X'&& line[2] == 'X')
-		{
-			return '1';
-		}
-		else if (line[0] == 'O'&& line[1] == 'O' && line[2] == 'O')
-		{
-			return '2';
-		}
+		if (tempsquare[i][0] == tempsquare[i][1] && tempsquare[i][1] == tempsquare[i][2])
+			if (tempsquare[0][0] == 'X')
+				return 1;
+			else
+				return 2;
 	}
+	//check column
+	for (int i = 0; i < 3; i++)
+	{
+		if (tempsquare[0][i] == tempsquare[1][i] && tempsquare[1][i] == tempsquare[2][i])
+			if (tempsquare[0][0] == 'X')
+				return 1;
+			else
+				return 2;
+	}
+	//chech diagonal line
+	if (tempsquare[0][0] == tempsquare[1][1] && tempsquare[2][2] == tempsquare[1][1] || tempsquare[0][2] == tempsquare[1][1] && tempsquare[2][0] == tempsquare[1][1])
+		if (tempsquare[0][0] == 'X')
+			return 1;
+		else
+			return 2;
+	if (tempcount == 9)
+		return 0;
 }
-void prmatch(char a[3][3])
+
+void printboard(char square[3][3])
 {
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			cout << "|"<<a[i][j] << "|";
+			cout << "|"<<square[i][j] << "|";
 		}
 		cout <<endl << "----------" <<endl;
 	}
 }
-void modegame(int i)
-{
-	
-}
-bool checkron(int i, int j)
+
+bool checkWronginput(int i, int j)
 {
 	if (i == 0 || i > 3 || j == 0 || j > 3 )
 	{
@@ -113,22 +72,23 @@ bool checkron(int i, int j)
 	{
 	case 1:
 		cout << "enter player 1 name :" << endl;
-		cin >> pl1;
+		cin >> player1;
 		cout << "enter player 2 name :" << endl;
-		cin >> pl2;
-		//prmatch(a);
+		cin >> player2;
+		//printboard(square);
 		while (true)
 		{
 			int i, j;
 			int count = 1;
-			prmatch(a);
+			printboard(square);
 			do
 			{
-				cout << "your turn " << pl1 << ":";
+				cout << "your turn " << player1 << ":";
 				cin >> i >> j;
-				if (a[i - 1][j - 1] != 'X' && a[i - 1][j - 1] != 'X' && checkron(i, j) == true)
+				if (square[i - 1][j - 1] != 'X' && square[i - 1][j - 1] != 'X' && checkWronginput(i, j) == true)
 				{
-					a[i - 1][j - 1] = 'X'; break;
+					square[i - 1][j - 1] = 'X'; 
+					break;
 				}
 				else
 				{
@@ -137,61 +97,63 @@ bool checkron(int i, int j)
 				}
 			} while (true);
 
-			if (checkwin(a) == '1')
+			if (checkwin(square, count) == 1)
 			{
-				cout << pl1 << " win";
+				cout << "plyer " << player1 << " Win " << endl;
 				break;
 			}
-			else if (checkwin(a) == '2')
+			else if (checkwin(square, count) == 2)
 			{
-				cout << pl2 << " win";
+				cout << "plyer " << player2 << " Win " << endl;
 				break;
 			}
-			if (count == 9)
+			else if (checkwin(square, count) == 0)
 			{
-				cout << "draw";
+				cout << "draw " << endl;
 				break;
 			}
-			prmatch(a);
+			
+			printboard(square);
 			do
 			{
-				cout << "your turn " << pl2 << ":";
+				cout << "your turn " << player2 << ":";
 				cin >> i >> j;
-				if (a[i - 1][j - 1] != 'O' && a[i - 1][j - 1] != 'X' && checkron(i, j) ==  true)
+				if (square[i - 1][j - 1] != 'O' && square[i - 1][j - 1] != 'X' && checkWronginput(i, j) ==  true)
 				{
-					a[i - 1][j - 1] = 'O'; break;
+					square[i - 1][j - 1] = 'O'; break;
 				}
 				else
 				{
-					cout << "choice ron!rechoice please" << endl;
+					cout << "choice wrong!rechoice please" << endl;
 					
 				}
 			} while (true);
 			
 
-			prmatch(a);
-			if (checkwin(a) == '1')
+			printboard(square);
+
+			if (checkwin(square, count) == 1)
 			{
-				cout << pl1 << " win";
+				cout << "plyer " << player1 << " Win "<<endl;
 				break;
 			}
-			else if (checkwin(a) == '2')
+			else if (checkwin(square, count) == 2)
 			{
-				cout << pl2 << " win";
+				cout << "plyer " << player2 << " Win " << endl;
 				break;
 			}
-			if(count == 9) 
+			else if (checkwin(square, count) == 0)
 			{
-				cout << "draw";
+				cout << "draw " << endl;
 				break;
 			}
+			
 			count++;
 			system("CLS");
 		}
 		break;
 	}
-
-	getchar();
+	system("pause");
 }
 
 

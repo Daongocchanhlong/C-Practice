@@ -1,4 +1,4 @@
 ﻿  tictactoe.cpp
-d:\testc++\tictactoe\tictactoe\tictactoe.cpp(73): warning C4715: 'checkwin': not all control paths return a value
+d:\testc++\tictactoe\tictactoe\tictactoe.cpp(38): warning C4715: 'checkwin': not all control paths return a value
   Tictactoe.vcxproj -> D:\testc++\Tictactoe\Debug\Tictactoe.exe
   Tictactoe.vcxproj -> D:\testc++\Tictactoe\Debug\Tictactoe.pdb (Partial PDB)
