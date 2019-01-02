@@ -91,6 +91,10 @@ int main()
 		{
 			ofstream outfile;
 			outfile.open("Liststudent.txt");
+			if (outfile.fail()) 
+			{
+				cout << "no find file! \n";
+			}
 			for (auto i = liststudent.begin(); i != liststudent.end(); ++i)
 			{
 				student student = *i;
