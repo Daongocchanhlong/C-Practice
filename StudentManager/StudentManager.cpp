@@ -79,6 +79,12 @@ int main()
 		}
 		case 2:
 		{	
+			//cout << "ID\tFULL NAME\t\tSCORE" << endl;
+			if (liststudent.size() == 0)
+			{
+				cout << "student's list empty\n";
+				break;
+			}
 			cout << "ID\tFULL NAME\t\tSCORE" << endl;
 			for (auto i = liststudent.begin(); i != liststudent.end(); ++i)
 			{
@@ -113,6 +119,10 @@ int main()
 			float score;
 			ifstream infile;
 			infile.open("Liststudent.txt");
+			if (infile.fail())
+			{
+				cout << "no find file! \n";
+			}
 			while (!infile.eof())
 			{
 				student  student;
@@ -137,6 +147,7 @@ int main()
 		system("pause");
 		system("cls");
 	} while (choose != 0);
+	
 	system("pause");
 	return 0;
 
