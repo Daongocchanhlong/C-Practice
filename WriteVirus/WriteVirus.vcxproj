@@ -110,9 +110,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="FluVirus.h" />
     <ClInclude Include="Virus.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FluVirus.cpp" />
     <ClCompile Include="Healing.cpp" />
     <ClCompile Include="Virus.cpp" />
   </ItemGroup>

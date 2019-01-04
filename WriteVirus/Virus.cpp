@@ -7,13 +7,12 @@ using namespace std;
 Virus::Virus() 
 {
 	this->mDna = new char;
-	Virus::DoBorn();
+
 }
 Virus::~Virus()
 {
-	Virus::DoDie();
 }
-Virus::Virus(Virus &virus)
+Virus::Virus(const Virus* virus)
 {
 	
 }
@@ -32,12 +31,8 @@ void Virus::LoadADNInformation()
 		{
 			infile.getline(temp, 255);
 		}
-		this->mDna = temp;
-		for (int  j = 1; j < 48 ; j++)
-		{
-			cout << *(this->mDna + j);
-		}
-		cout << endl;
+		this->setMDna(temp);
+		
 	}
 	infile.close();
 }
@@ -46,6 +41,26 @@ void Virus::ReduceResistance(int medicineResistance)
 	this->mResistance = this->mResistance - medicineResistance;
 	if (this->mResistance <= 0)
 	{
-		Virus::DoDie();
+		
 	}
+}
+
+void Virus::setMDna(char * mDNA)
+{
+	this->mDna = mDNA;
+}
+
+char * Virus::getMDna()
+{
+	return this->mDna;
+}
+
+void Virus::setMResistance(int resistance)
+{
+	this->mResistance = resistance;
+}
+
+int Virus::getMResistance()
+{
+	return this->mResistance;
 }

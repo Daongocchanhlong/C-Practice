@@ -1,12 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include "Virus.h"
+#include "FluVirus.h"
+#include <random>
 
 using namespace std;
+
 int main()
 {
-	Virus *virus = new Virus();
-	virus->LoadADNInformation();
 	system("pause");
 	return 0;
 }
