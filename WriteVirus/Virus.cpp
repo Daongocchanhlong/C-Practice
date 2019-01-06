@@ -14,7 +14,8 @@ Virus::~Virus()
 }
 Virus::Virus(const Virus* virus)
 {
-	
+	delete this->mDna;
+	this->mResistance = 0;
 }
 void Virus::LoadADNInformation()
 {
@@ -41,7 +42,7 @@ void Virus::ReduceResistance(int medicineResistance)
 	this->mResistance = this->mResistance - medicineResistance;
 	if (this->mResistance <= 0)
 	{
-		
+		this->DoDie();
 	}
 }
 

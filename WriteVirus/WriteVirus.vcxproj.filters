@@ -21,6 +21,12 @@
     <ClInclude Include="FluVirus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DengueVirus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Paitient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Virus.cpp">
@@ -30,6 +36,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FluVirus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DengueVirus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Paitient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
