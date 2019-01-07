@@ -76,14 +76,11 @@ void Paitient::TakeMedicine()
 			i--;
 		}
 	}
-	cout << this->mVirusList.size()<<endl;
 	int countResistanceVirus= 0;
+
 	for (auto i : this->mVirusList)
 	{
-		if (i->getMResistance() > 0)
-		{
 			countResistanceVirus += i->getMResistance();
-		}
 	}
 	cout << "after clone : " << this->mVirusList.size() << endl;
 	cout << "resistance virus : " << countResistanceVirus<<endl;
@@ -92,7 +89,7 @@ void Paitient::TakeMedicine()
 		cout << "paitient is die \n";
 		this->Dodie();
 	}
-	if (countVirusAfter == 0)
+	if (this->mVirusList.size() == 0)
 	{
 		cout << "paitient recover! \n";
 		cout << "Patients can leave the hospital !" << endl;

@@ -23,6 +23,7 @@ int main()
 			paitient->TakeMedicine();
 		}
 	}
+
 	system("pause");
 	return 0;
 }

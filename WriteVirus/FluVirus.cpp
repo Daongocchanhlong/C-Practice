@@ -17,9 +17,9 @@ FluVirus::~FluVirus()
 {
 
 }
-FluVirus::FluVirus(const FluVirus *fluVirus)
+FluVirus::FluVirus(const FluVirus *fluVirus) : Virus(fluVirus)
 {
-	*this = *fluVirus;
+	this->mColor = fluVirus->mColor;
 }
 void FluVirus::DoBorn()
 {

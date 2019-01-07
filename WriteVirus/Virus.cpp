@@ -15,6 +15,8 @@ Virus::~Virus()
 }
 Virus::Virus(const Virus* virus)
 {
+	this->mDna = virus->mDna;
+	this->mResistance = virus->mResistance;
 }
 void Virus::LoadADNInformation()
 {

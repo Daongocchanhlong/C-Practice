@@ -14,9 +14,9 @@ DengueVirus::~DengueVirus()
 {
 }
 
-DengueVirus::DengueVirus(const DengueVirus * denVirus)
+DengueVirus::DengueVirus(const DengueVirus * denVirus) : Virus(denVirus)
 {
-	*this = *denVirus;
+	this->mProtein = denVirus->mProtein;
 }
 
 void DengueVirus::DoBorn()
