@@ -51,11 +51,9 @@ void Paitient::TakeMedicine()
 	int viruslistSize = this->mVirusList.size();
 	int countVirusAfter = 0;
 	cout << "medicine_resistance: "<<medicine_resistance << endl;
-	cout << "virus before drink drug : "<<viruslistSize << endl;;
+	cout << "virus before drink drug : "<< this->mVirusList.size() << endl;;
 	for (int i = 0; i < viruslistSize; i++)
 	{
-		if (this->mVirusList[i]->getMResistance() > 0)
-		{
 			this->mVirusList[i]->ReduceResistance(medicine_resistance);
 			if (this->mVirusList[i]->getMResistance() > 0)
 			{
@@ -64,30 +62,41 @@ void Paitient::TakeMedicine()
 					this->mVirusList.push_back(virusclone);
 				}
 			}
-		}
+			else
+			{
+				this->mVirusList[i]->setMResistance(0);
+			}
+		
 	}
-	viruslistSize = this->mVirusList.size();
-	int countResistanceVirus= 0;
-	for (int i = 0; i < viruslistSize; i++)
+	for (int  i = 0; i < this->mVirusList.size(); i++)
 	{
-		if (this->mVirusList[i]->getMResistance() > 0 )
+		if (this->mVirusList[i]->getMResistance() == 0)
 		{
-			countResistanceVirus += this->mVirusList[i]->getMResistance();
-			countVirusAfter += 1;
+			this->mVirusList.erase(this->mVirusList.begin() + i);
+			i--;
 		}
 	}
+	cout << this->mVirusList.size()<<endl;
+	int countResistanceVirus= 0;
+	for (auto i : this->mVirusList)
+	{
+		if (i->getMResistance() > 0)
+		{
+			countResistanceVirus += i->getMResistance();
+		}
+	}
+	cout << "after clone : " << this->mVirusList.size() << endl;
+	cout << "resistance virus : " << countResistanceVirus<<endl;
 	if (countResistanceVirus > this->mResistance)
 	{
+		cout << "paitient is die \n";
 		this->Dodie();
 	}
-	cout << "after clone : " << countVirusAfter << endl;
 	if (countVirusAfter == 0)
 	{
 		cout << "paitient recover! \n";
 		cout << "Patients can leave the hospital !" << endl;
 	}
-
-
 }
 
 void Paitient::Dodie()

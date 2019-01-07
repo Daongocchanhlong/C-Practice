@@ -15,7 +15,7 @@ FluVirus::FluVirus()
 }
 FluVirus::~FluVirus()
 {
-	this->mColor = 0;
+
 }
 FluVirus::FluVirus(const FluVirus *fluVirus)
 {
@@ -46,8 +46,6 @@ vector<Virus*> FluVirus::DoClone()
 }
 void FluVirus::DoDie()
 {
-	this->~FluVirus();
-
 }
 void FluVirus::InitREsistance()
 {

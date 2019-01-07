@@ -49,7 +49,6 @@ std::vector<Virus*> DengueVirus::DoClone()
 
 void DengueVirus::DoDie()
 {
-	this->mProtein = "";
 }
 
 void DengueVirus::InitREsistance()

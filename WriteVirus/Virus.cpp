@@ -11,15 +11,14 @@ Virus::Virus()
 }
 Virus::~Virus()
 {
+	delete this->mDna;
 }
 Virus::Virus(const Virus* virus)
 {
-	delete this->mDna;
-	this->mResistance = 0;
 }
 void Virus::LoadADNInformation()
 {
-	ifstream infile("ATXG.bin", ios::out | ios::app | ios::binary);
+	ifstream infile("ATXG.bin");
 	if (!infile.is_open())
 	{
 		cout << "no find file! \n";
