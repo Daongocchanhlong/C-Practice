@@ -13,17 +13,16 @@ int main()
 	srand(time(0));
 
 	Paitient * paitient = new Paitient();
-	char t = 0;
-	while (paitient->getState() == 1)
+	char t = '1';
+	while (paitient->getState() == 1 && t == '1')
 	{
 		printf("Take Medicine (0 = NO, 1 = YES : ");
 		cin >> t;
-		if (t == 1)
+		if (t == '1')
 		{
 			paitient->TakeMedicine();
 		}
 	}
-	
 	system("pause");
 	return 0;
 }

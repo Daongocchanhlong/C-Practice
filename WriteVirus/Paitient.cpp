@@ -2,6 +2,8 @@
 #include "FluVirus.h"
 #include "Virus.h"
 #include "DengueVirus.h"
+#include <iostream>
+using namespace std;
 enum species
 {
 	Fluvirus = 1,
@@ -45,20 +47,44 @@ void Paitient::DoStart()
 
 void Paitient::TakeMedicine()
 {
-	int medicine_resistance = rand() % 60 + 1;
-	for (auto virus : this->mVirusList)
+	int medicine_resistance = rand() % 30 + 1;
+	int viruslistSize = this->mVirusList.size();
+	int countVirusAfter = 0;
+	cout << "medicine_resistance: "<<medicine_resistance << endl;
+	cout << "virus before drink drug : "<<viruslistSize << endl;;
+	for (int i = 0; i < viruslistSize; i++)
 	{
-		virus->ReduceResistance(medicine_resistance);
-	}
-	for (auto virus : this->mVirusList)
-	{
-		if (virus->getMResistance() > 0)
+		if (this->mVirusList[i]->getMResistance() > 0)
 		{
-			for (auto virusclone : virus->DoClone())
+			this->mVirusList[i]->ReduceResistance(medicine_resistance);
+			if (this->mVirusList[i]->getMResistance() > 0)
 			{
-				this->mVirusList.push_back(virusclone);
+				for (auto virusclone : this->mVirusList[i]->DoClone())
+				{
+					this->mVirusList.push_back(virusclone);
+				}
 			}
 		}
+	}
+	viruslistSize = this->mVirusList.size();
+	int countResistanceVirus= 0;
+	for (int i = 0; i < viruslistSize; i++)
+	{
+		if (this->mVirusList[i]->getMResistance() > 0 )
+		{
+			countResistanceVirus += this->mVirusList[i]->getMResistance();
+			countVirusAfter += 1;
+		}
+	}
+	if (countResistanceVirus > this->mResistance)
+	{
+		this->Dodie();
+	}
+	cout << "after clone : " << countVirusAfter << endl;
+	if (countVirusAfter == 0)
+	{
+		cout << "paitient recover! \n";
+		cout << "Patients can leave the hospital !" << endl;
 	}
 
 
