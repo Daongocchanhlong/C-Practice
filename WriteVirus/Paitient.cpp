@@ -17,6 +17,10 @@ Paitient::Paitient()
 
 Paitient::~Paitient()
 {
+	for (auto i = this->mVirusList.begin(); i < this->mVirusList.end(); ++i)
+	{
+		delete *i;
+	}
 }
 
 void Paitient::InitResistance()

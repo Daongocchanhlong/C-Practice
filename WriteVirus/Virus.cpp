@@ -6,18 +6,26 @@ using namespace std;
 
 Virus::Virus() 
 {
-	this->mDna = new char;
+	this->mDna = new char[100];
 
 }
+
 Virus::~Virus()
 {
 	delete this->mDna;
 }
+
 Virus::Virus(const Virus* virus)
 {
-	this->mDna = virus->mDna;
+	this->mDna = new char[100];
+
+	for (int i = 1; i < 100; i++)
+	{
+		(this->mDna[i]) = (virus->mDna[i]);
+	}
 	this->mResistance = virus->mResistance;
 }
+
 void Virus::LoadADNInformation()
 {
 	ifstream infile("ATXG.bin");
@@ -27,17 +35,16 @@ void Virus::LoadADNInformation()
 	}
 	else
 	{
-		char temp[255];
-		int i = -1;
+		
 		while (!infile.eof())
 		{
-			infile.getline(temp, 255);
+			infile.getline(this->mDna, 100);
 		}
-		this->setMDna(temp);
 		
 	}
 	infile.close();
 }
+
 void Virus::ReduceResistance(int medicineResistance)
 {
 	this->mResistance = this->mResistance - medicineResistance;

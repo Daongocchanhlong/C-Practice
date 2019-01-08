@@ -24,6 +24,8 @@ int main()
 		}
 	}
 
+	delete paitient;
+
 	system("pause");
 	return 0;
 }
